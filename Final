@@ -1,1 +1,192 @@
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
 
+using namespace std;
+
+class Balance {
+    public:
+    int balance;
+    Balance(int balance) {
+        this->balance = balance;
+    }
+};
+
+    
+class User{
+    public:
+    string name;
+    int id, balance;
+    User (string name, int id) {
+        balance = 5000;
+        this->id = id;
+        this->name = name;
+    }
+}; 
+    
+class Consuption{
+    public: 
+    int sum;
+    int id;
+    Consuption (int sum, int userid) {
+        this->sum = sum;
+        this->id = id;
+    }
+};
+ofstream out;
+int n1, n2, i, s, b=1, v, p, p2;
+double x;
+int main ()
+{
+
+    cout<<"пополнить баланс 1 на сумму: ";
+    cin>>p;
+    out.open("пополнение.txt");
+    if (out.is_open())
+    {
+        out<<"пополнение 1 баланса = "<<p<<"\n";
+    }
+    out.close();
+    
+    
+    cout << "ведите количество месецов трат для 1 баланса но неболше 12\n";
+    cin >> n1;
+    if(n1>12){
+        cout << "тычё дурак шоль";
+        return 0;
+    };
+    int* consuption = (int*)calloc(n1, sizeof(int));
+    int* balanse = (int*)calloc(b, sizeof(int));
+    
+    for(i=1; i<b+1; i++){
+    cout<<"введите общие траты 1 категории трат "<<"но не больше "<<p<<" = ";
+    cin>> balanse[i-1];
+    };
+    
+    for(i=0; i<n1; i++){
+        
+    }
+    for(i=1; i<n1+1; i++){
+     cout<<"введите траты месяца "<<i<<":";
+    cin>> consuption[i-1];
+    *balanse=*balanse+consuption[i-1];
+    };
+    for(i=0; i<n1; i++){
+        
+    }
+    
+    out.open("траты 1 баланса.txt");
+    if (out.is_open())
+    {
+    for(i=1; i<n1+1; i++){
+    out<<"траты в этом " <<i<< " месеце "<<"= "<<consuption[i-1]<<"$\n";
+    }
+    }
+    out.close();
+    
+    
+    out.open("процнт месецу1.txt");
+    if (out.is_open())
+    {
+            double x=0, s=0;
+            for(int i=0; i<n1; i++){
+            x=(consuption[i]+0.0)+x;
+            }
+            double it;
+            for(int i=0; i<n1; i++){
+            s=consuption[i]/x*100;
+            v=s;
+            out<<"процнты по этому "<<i+1<<" месецу от всех месечныйх трат"<<"= "<<v<<"%\n";
+            }
+    }
+    out.close();
+    p=p-*balanse;
+    
+    
+    int p2;
+    cout<<"попольнить 2 баланс на сумму: ";
+    cin>>p2;;
+    
+    out.open("пополнение.txt", ios_base::app);
+    if (out.is_open())
+    {
+        out<<"пополнение 2 баланса = "<<p2;
+    }
+    out.close();
+    
+    cout << "ведите  количество месецов трат для 2 баланса но неболше 12\n";
+    cin >> n2;
+    if(n2>12){
+        cout << "тычё дурак шоль";
+        return 0;
+    };
+    
+    int* consuption2 = (int*)calloc(n2, sizeof(int));
+    int* balanse2 = (int*)calloc(b, sizeof(int));
+    
+    for(i=1; i<b+1; i++){
+    cout<<"введите общие траты 2 категории трат "<<"но не больше "<<p2<<" = ";
+    cin>> balanse2[i-1];
+    };
+    
+    for(i=0; i<n2; i++){
+        
+    }
+    for(i=1; i<n2+1; i++){
+     cout<<"введите траты месяца "<<i<<":";
+    cin>> consuption2[i-1];
+    *balanse2=*balanse2+consuption2[i-1];
+    };
+    for(i=0; i<n2; i++){
+        
+    }
+    
+    out.open("траты 2 баланса.txt");
+    if (out.is_open())
+    {
+    for(i=1; i<n2+1; i++){
+    out<<"траты в этом " <<i<< " месеце "<<"= "<<consuption2[i-1]<<"$\n";
+    }
+    }
+    out.close();
+    
+    
+    out.open("процнт месецу2.txt");
+    if (out.is_open())
+    {
+            double x=0,s=0;
+            for(int i=0; i<n2; i++){
+            x=(consuption2[i]+0.0)+x;
+            }
+            double it;
+            for(int i=0; i<n2; i++){
+            s=consuption2[i]/x*100;
+            v=s;
+            out<<"процнты по этому "<<i+1<<" месецу от всех месечныйх трат"<<"= "<<v<<"%\n";
+            }
+    }
+    out.close();
+    p2=p2-*balanse2;
+    
+    out.open("расчёт баланса.txt");
+    if (out.is_open())
+    {
+        out<<"баланс 1 = "<<p<<"\n";
+        out<<"баланс 2 = "<<p2<<"\n";
+    }
+    
+    out.open("процент всех трат.txt");
+    if (out.is_open())
+    {
+    double balanse_overal=p+p2+0.0;
+    int balanse_overal_percent[2];
+    balanse_overal_percent[0]=p/balanse_overal*100;
+    balanse_overal_percent[1]=p2/balanse_overal*100;
+    out<<"траты 1 баланса = "<<balanse_overal_percent[0]<<"\n";
+    out<<"траты 2 баланса = "<<balanse_overal_percent[1]<<"\n";
+    }
+    
+    
+    
+    return 0;
+}
