@@ -1,10 +1,10 @@
-#include <iostream>
-#include <fstream>
-#include <stdlib.h>
+#include <iostream>//основная беблеотека 
+#include <fstream>//беблеотека для работы с файлами
+#include <stdlib.h>//для работы с массивами
 
 using namespace std;
 
-class Balance {
+class Balance {//класс баланс
     public:
     int balance;
     Balance(int balance) {
@@ -13,7 +13,7 @@ class Balance {
 };
 
     
-class User{
+class User{//класс полаватель
     public:
     string name;
     int id, balance;
@@ -24,7 +24,7 @@ class User{
     }
 }; 
     
-class Consuption{
+class Consuption{//класс Consuption
     public: 
     int sum;
     int id;
@@ -33,7 +33,7 @@ class Consuption{
         this->id = id;
     }
 };
-ofstream out;
+ofstream out;//подключение файла вывода 
 int n1, n2, i, s, b=1, v, p, p2;
 double x;
 int main ()
@@ -41,22 +41,22 @@ int main ()
 
     cout<<"пополнить баланс 1 на сумму: ";
     cin>>p;
-    out.open("пополнение.txt");
-    if (out.is_open())
+    out.open("пополнение.txt");//открываем файл для записи
+    if (out.is_open())//работаетм с файлам для записи
     {
         out<<"пополнение 1 баланса = "<<p<<"\n";
     }
-    out.close();
+    out.close();//закрываем файл ждя записи
     
     
     cout << "ведите количество месецов трат для 1 баланса но неболше 12\n";
     cin >> n1;
-    if(n1>12){
-        cout << "тычё дурак шоль";
-        return 0;
-    };
-    int* consuption = (int*)calloc(n1, sizeof(int));
-    int* balanse = (int*)calloc(b, sizeof(int));
+    if(n1>12){//защита от дурака
+        cout << "тычё дурак шоль";//защита от дурака
+        return 0;//защита от дурака
+    };//защита от дурака
+    int* consuption = (int*)calloc(n1, sizeof(int));//создамём массив для consuption
+    int* balanse = (int*)calloc(b, sizeof(int));//создаём массив для balanse 
     
     for(i=1; i<b+1; i++){
     cout<<"введите общие траты 1 категории трат "<<"но не больше "<<p<<" = ";
@@ -85,8 +85,8 @@ int main ()
     out.close();
     
     
-    out.open("процнт месецу1.txt");
-    if (out.is_open())
+    out.open("процнт месецу1.txt");//открываем файл 
+    if (out.is_open())//работа внутри файла 
     {
             double x=0, s=0;
             for(int i=0; i<n1; i++){
@@ -96,12 +96,13 @@ int main ()
             for(int i=0; i<n1; i++){
             s=consuption[i]/x*100;
             v=s;
-            out<<"процнты по этому "<<i+1<<" месецу от всех месечныйх трат"<<"= "<<v<<"%\n";
+            out<<"процнты по этому "<<i+1<<" месецу от всех месечныйх трат"<<"= "<<v<<"%\n";//записываем в файл
             }
     }
-    out.close();
+    out.close();//закрываем файл
     p=p-*balanse;
     
+                        //повторение ниже
     
     int p2;
     cout<<"попольнить 2 баланс на сумму: ";
